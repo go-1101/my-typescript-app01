@@ -26,6 +26,9 @@ const pool = mysql.createPool(dbConfig);
 // ミドルウェア: JSONリクエストボディのパース
 app.use(express.json());
 
+// 静的ファイル（HTML, CSS, JS）を配信する設定
+app.use(express.static('public'));
+
 // CORS対策
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
