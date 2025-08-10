@@ -3,28 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-"scripts": {
-  "build": "tsc",
-  "start": "node dist/index.js"
-},    
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/go-1101/my-typescript-app01.git"
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/go-1101/my-typescript-app01/issues"
-  },
-  "homepage": "https://github.com/go-1101/my-typescript-app01#readme",
+  "type": "module",
   "dependencies": {
-    "@types/express": "^5.0.3",
-    "@types/node": "^24.2.1",
-    "express": "^5.1.0",
-    "mysql2": "^3.14.3",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.12",
+    "typescript": "^5.4.5"
   }
 }

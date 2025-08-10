@@ -1,27 +1,16 @@
 import express from 'express';
 import mysql from 'mysql2/promise';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const app = express();
 const port = 3000;
 
-// 環境変数の存在チェック
-const dbConfig = {
+// MySQL接続設定
+const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-};
-
-if (!dbConfig.host || !dbConfig.user || !dbConfig.password || !dbConfig.database) {
-  console.error("Missing required environment variables for database connection.");
-  process.exit(1);
-}
-
-// MySQL接続設定
-const pool = mysql.createPool(dbConfig);
+  database: process.env.DB_NAME
+});
 
 // CORS対策
 app.use((req, res, next) => {
