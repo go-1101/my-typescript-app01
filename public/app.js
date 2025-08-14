@@ -64,7 +64,6 @@ taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addTodo();
 });
 
-
 const fetchTodos = async () => {
     const response = await fetch(API_URL);
     const todos = await response.json();
@@ -88,7 +87,6 @@ const fetchTodos = async () => {
         todoList.appendChild(li);
     });
 };
-
 
 // ... 既存のコード ...
 
@@ -114,6 +112,8 @@ const fetchTodos = async () => {
         });
     }
 };
+
+// test用の変更
 
 // 初回ロード時にタスク一覧を取得
 fetchTodos();
