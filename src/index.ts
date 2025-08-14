@@ -36,16 +36,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// ルートエンドポイント (変更なし)
-app.get('/', async (req, res) => {
-  try {
-    const [rows] = await pool.execute('SELECT 1 + 1 AS solution');
-    res.json({ message: 'Hello from TypeScript App!', dbResult: rows });
-  } catch (error) {
-    console.error('Database connection error:', error);
-    res.status(500).send('Database connection failed.');
-  }
-});
+
 
 // 全タスクを取得 (Read)
 app.get('/todos', async (req, res) => {

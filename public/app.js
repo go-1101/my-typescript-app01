@@ -47,6 +47,11 @@ const toggleComplete = async (id, is_completed) => {
 
 // タスクを削除する関数
 const deleteTodo = async (id) => {
+    // ユーザーに確認を求める
+    if (!confirm('本当にこのタスクを削除しますか？')) {
+        return; // 「キャンセル」が押されたら処理を中断
+    }
+    
     await fetch(`${API_URL}/${id}`, {
         method: 'DELETE'
     });
