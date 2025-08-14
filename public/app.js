@@ -89,5 +89,31 @@ const fetchTodos = async () => {
     });
 };
 
+
+// ... 既存のコード ...
+
+// タスク一覧を取得して表示する関数
+const fetchTodos = async () => {
+    const response = await fetch(API_URL);
+    const todos = await response.json();
+    todoList.innerHTML = ''; // 一旦リストをクリア
+    if (todos.length === 0) {
+        todoList.innerHTML = '<li class="todo-item"><span>タスクはありません。</span></li>';
+    } else {
+        todos.forEach(todo => {
+            const li = document.createElement('li');
+            li.className = `todo-item ${todo.is_completed ? 'completed' : ''}`;
+            li.innerHTML = `
+                <span>${todo.task}</span>
+                <div>
+                    <button onclick="toggleComplete(${todo.id}, ${!todo.is_completed})">完了</button>
+                    <button onclick="deleteTodo(${todo.id})">削除</button>
+                </div>
+            `;
+            todoList.appendChild(li);
+        });
+    }
+};
+
 // 初回ロード時にタスク一覧を取得
 fetchTodos();
