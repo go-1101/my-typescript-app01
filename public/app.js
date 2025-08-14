@@ -51,7 +51,7 @@ const deleteTodo = async (id) => {
     if (!confirm('本当にこのタスクを削除しますか？')) {
         return; // 「キャンセル」が押されたら処理を中断
     }
-    
+
     await fetch(`${API_URL}/${id}`, {
         method: 'DELETE'
     });
@@ -63,6 +63,31 @@ addBtn.addEventListener('click', addTodo);
 taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addTodo();
 });
+
+
+const fetchTodos = async () => {
+    const response = await fetch(API_URL);
+    const todos = await response.json();
+    todoList.innerHTML = '';
+
+    if (todos.length === 0) {
+        todoList.innerHTML = '<li>タスクがありません。</li>';
+        return;
+    }
+
+    todos.forEach(todo => {
+        const li = document.createElement('li');
+        li.className = `todo-item ${todo.is_completed ? 'completed' : ''}`;
+        li.innerHTML = `
+            <span>${todo.task}</span>
+            <div>
+                <button onclick="toggleComplete(${todo.id}, ${!todo.is_completed})">完了</button>
+                <button onclick="deleteTodo(${todo.id})">削除</button>
+            </div>
+        `;
+        todoList.appendChild(li);
+    });
+};
 
 // 初回ロード時にタスク一覧を取得
 fetchTodos();
